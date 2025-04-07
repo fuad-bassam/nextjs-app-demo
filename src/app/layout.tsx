@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import Header from "./_private/components/Header";
+import { AuthProvider } from "./_private/Context/AuthContext";
 
 
 export const metadata: Metadata = {
@@ -13,6 +15,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <head>
@@ -23,7 +27,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
+        <AuthProvider>
+
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
