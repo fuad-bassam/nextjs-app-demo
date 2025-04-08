@@ -3,6 +3,8 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "./_private/components/Header";
 import { AuthProvider } from "./_private/Context/AuthContext";
+import { DialogProvider } from "./_private/Context/DialogContext";
+import { SnackbarProvider } from "./_private/Context/SnackbarContext";
 
 
 export const metadata: Metadata = {
@@ -27,10 +29,15 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <AuthProvider>
 
+        <AuthProvider>
           <Header />
-          {children}
+
+          <DialogProvider>
+            <SnackbarProvider>
+              {children}
+            </SnackbarProvider>
+          </DialogProvider>
         </AuthProvider>
       </body>
     </html>

@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
 

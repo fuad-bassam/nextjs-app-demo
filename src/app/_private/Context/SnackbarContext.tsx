@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { Snackbar, Alert } from '@mui/material';
 import { SnackbarSeverityEnum } from '../store/CommonEnums';

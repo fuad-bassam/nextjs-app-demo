@@ -8,33 +8,6 @@
       "role": "admin"
     },
     {
-      "id": "b862",
-      "name": "Jane Doe",
-      "email": "jane@example.com",
-      "password": "hashed_password",
-      "role": "user"
-    },
-    {
-      "id": "2",
-      "name": "Jane Doe",
-      "email": "jane@example.com",
-      "password": "hashed_password",
-      "role": "user"
-    },
-    {
-      "id": "2",
-      "name": "Jane Doe",
-      "email": "jane@example.com",
-      "password": "hashed_password",
-      "role": "user"
-    },
-    {
-      "name": "dddddd",
-      "email": "john3@example.com",
-      "password": "register",
-      "id": "E4qRAZ0"
-    },
-    {
       "name": "tt6",
       "email": "john3@example.com",
       "password": "register",
@@ -163,14 +136,14 @@
       "productId": "9f97",
       "price": "1",
       "stock": "2",
-      "id": 1
+      "id": "1"
     },
     {
       "name": "v2",
       "productId": "xE4gLNI",
       "price": "1",
       "stock": "3",
-      "id": 2
+      "id": "2"
     }
   ]
 }
