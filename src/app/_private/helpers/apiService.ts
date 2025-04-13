@@ -1,8 +1,11 @@
 import axiosInstance from './axiosInstance';
 
 const apiService = <T>(baseUrl: string) => {
+
   const getList = async (query: string | null = null): Promise<{ data: T[]; totalCount: number }> => {
     const url = query ? `${baseUrl}${query}` : baseUrl;
+    await new Promise((res) => setTimeout(res, 3000))
+
     const response = await axiosInstance.get<T[]>(url).catch((error) => {
       console.error(`Error fetching data from ${url}:`, error);
       throw error;

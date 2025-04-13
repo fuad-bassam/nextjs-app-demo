@@ -1,32 +1,54 @@
-import React, { useState } from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import { Button, TextField, useMediaQuery } from "@mui/material";
 import { InitialStateCategory } from "../../_store/ProductStoreModule";
 import Category from "@/app/_private/models/Product/Category";
-
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ISearchAndPaginationInfoKeysNames } from "@/app/_private/models/Common/Pagination";
+import { getJsonServerQuerySearchPart } from "@/app/_private/helpers/getJsonServerSearchQuery";
 
 interface CategorySearchFormProps {
-    onSubmit: (formData: Category) => void;
-    onReset: (formData: Category) => void;
     actions?: React.ReactNode;
 }
 
-const CategorySearchForm: React.FC<CategorySearchFormProps> = ({ onSubmit, onReset, actions }) => {
+const CategorySearchFormNew: React.FC<CategorySearchFormProps> = ({ actions }) => {
     const [formData, setFormData] = useState<Category>(InitialStateCategory);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
+    useEffect(() => {
+        const delayInputTimeoutId = setTimeout(() => {
+            handleFormSubmit()
+        }, 500);
+        return () => clearTimeout(delayInputTimeoutId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formData]);
 
-    const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onSubmit(formData);
+    const handleFormSubmit = (e?: React.FormEvent) => {
+        if (e)
+            e.preventDefault();
+        const params = new URLSearchParams(searchParams)
+
+        const stringQuery = getJsonServerQuerySearchPart(formData)
+        if (stringQuery)
+            params.set(ISearchAndPaginationInfoKeysNames.query, stringQuery)
+        else
+            params.delete(ISearchAndPaginationInfoKeysNames.query)
+
+        router.push(`${pathname}?${params.toString()}`)
     };
 
     const handleReset = (e: React.FormEvent) => {
         e.preventDefault();
+        const params = new URLSearchParams(searchParams);
+        params.delete(ISearchAndPaginationInfoKeysNames.query);
         setFormData(InitialStateCategory);
-        onReset(InitialStateCategory);
+        router.push(`${pathname}? ${params.toString()}`)
     };
 
     const isXs = useMediaQuery('(max-width:600px)');
@@ -34,6 +56,7 @@ const CategorySearchForm: React.FC<CategorySearchFormProps> = ({ onSubmit, onRes
     return (
         <form
             onSubmit={handleFormSubmit}
+
             style={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -72,4 +95,4 @@ const CategorySearchForm: React.FC<CategorySearchFormProps> = ({ onSubmit, onRes
     );
 };
 
-export default CategorySearchForm;
+export default CategorySearchFormNew;

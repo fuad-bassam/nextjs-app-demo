@@ -1,3 +1,5 @@
+import { IPaginationInfo } from "../models/Common/Pagination";
+
 export const getJsonServerQuerySearchPart = <T extends Record<string, any>>(formData: T): string => {
     const filteredData = Object.fromEntries(
         Object.entries(formData)
@@ -8,7 +10,8 @@ export const getJsonServerQuerySearchPart = <T extends Record<string, any>>(form
     return new URLSearchParams(filteredData).toString();
 };
 
-export const getJsonServerQueryBuild = (paginationInfo: any, formData: any): string => {
-    const searchQuery = getJsonServerQuerySearchPart(formData);
-    return `?${searchQuery ? `${searchQuery}&` : ""}_page=${paginationInfo.page + 1}&_limit=${paginationInfo.rowsPerPage}${paginationInfo.sortBy ? `&_sort=${paginationInfo.sortBy}&_order=${paginationInfo.sortOrder}` : ""}`;
-};
+export const getJsonServerQueryBuildWithFormData = (paginationInfo: IPaginationInfo, formData: any): string =>
+    `?${getJsonServerQuerySearchPart(formData) || ''}${paginationInfo.currentPage ? `&_page=${paginationInfo.currentPage}` : ''}${paginationInfo.rowsPerPage ? `&_limit=${paginationInfo.rowsPerPage}` : ''}${paginationInfo.sortBy ? `&_sort=${paginationInfo.sortBy}&_order=${paginationInfo.sortOrder}` : ''}`;
+
+export const getJsonServerQueryBuildWithStringQuery = (paginationInfo: IPaginationInfo, stringQuery: string): string =>
+    `?${stringQuery ? stringQuery : ''}${paginationInfo.currentPage ? `&_page=${paginationInfo.currentPage}` : ''}${paginationInfo.rowsPerPage ? `&_limit=${paginationInfo.rowsPerPage}` : ''}${paginationInfo.sortBy ? `&_sort=${paginationInfo.sortBy}&_order=${paginationInfo.sortOrder}` : ''}`;

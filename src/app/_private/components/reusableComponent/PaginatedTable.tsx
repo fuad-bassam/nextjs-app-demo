@@ -35,11 +35,11 @@ const PaginatedTable = <T,>({
 
   const [loading] = useState<boolean>(false);
   const handleChangePage = (_event: unknown, newPage: number) => {
-    handlePaginationChange({ ...paginationInfo, page: newPage });
+    handlePaginationChange({ ...paginationInfo, currentPage: newPage });
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handlePaginationChange({ ...paginationInfo, rowsPerPage: parseInt(event.target.value, 10), page: 0 });
+    handlePaginationChange({ ...paginationInfo, rowsPerPage: parseInt(event.target.value, 10), currentPage: 0 });
   };
 
   const handleSort = (columnId: string) => {
@@ -102,7 +102,7 @@ const PaginatedTable = <T,>({
         component="div"
         count={totalCount}
         rowsPerPage={paginationInfo.rowsPerPage}
-        page={paginationInfo.page}
+        page={paginationInfo.currentPage}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
