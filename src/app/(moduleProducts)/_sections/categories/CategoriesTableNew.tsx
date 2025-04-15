@@ -7,6 +7,10 @@ import { getJsonServerQueryBuildWithStringQuery } from "@/app/_private/helpers/g
 import PaginatedTableNew from "@/app/_private/components/reusableComponent/TableParts/PaginatedTableNew";
 import { ISearchAndPaginationInfo } from "@/app/_private/models/Common/Pagination";
 import CategorySearchFormNew from "./CategorySearchFormNew";
+import CategoryActionsCell from "@/app/(moduleProducts)/_areas/CategoriesTableNew/CategoryActionsCell";
+import { NavRoutesEnum } from "@/app/_private/store/NavRoutesEnum";
+
+import NavigationButton from "@/app/_private/components/Buttons/NavigationButton";
 
 const columns: TableColumnFormat<Category>[] = [
     { id: "name", label: "Name" },
@@ -16,8 +20,6 @@ const columns: TableColumnFormat<Category>[] = [
 const CategoriesTableNew = async (props: {
     searchParams?: ISearchAndPaginationInfo;
 }) => {
-
-    console.log(props.searchParams);
 
     const {
         query = '',
@@ -37,7 +39,6 @@ const CategoriesTableNew = async (props: {
     }, query);
 
     const data1 = await categoryApi().getByQuery(urlQuery);
-    console.log(data1.data);
     // } catch {
 
     //     notFound();
@@ -50,19 +51,20 @@ const CategoriesTableNew = async (props: {
             <p>Server-rendered at: {timestamp}</p>
 
             <CategorySearchFormNew
-            // actions={
-            //     <Button onClick={() => handleCreate()} variant="contained" color="primary" style={{ marginRight: 8 }}>
-            //         Create
-            //     </Button>
-            // }
+                actions={
+                    <NavigationButton urlPath={`${NavRoutesEnum.CategoryCreateUpdate.replace(':urlId?', '')}`} variant="contained" color="primary" >Create Category</NavigationButton>
+                }
             />
 
-            <PaginatedTableNew
+            < PaginatedTableNew
                 data={data1.data}
                 columns={columns}
                 totalCount={data1.totalCount}
+                actions={(row) => (
+                    <CategoryActionsCell row={row} />
+                )}
             />
-        </div>
+        </div >
     );
 };
 export default CategoriesTableNew;

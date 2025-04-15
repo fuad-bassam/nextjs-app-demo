@@ -1,11 +1,7 @@
 import { Typography } from "@mui/material";
-import React, { Suspense } from "react";
-
+import React from "react";
 import CategoriesTableNew from "../../_sections/categories/CategoriesTableNew";
 import { ISearchAndPaginationInfo } from "@/app/_private/models/Common/Pagination";
-import Loading from "./loading";
-
-
 
 const CategoryPage = async (props: { searchParams?: Promise<ISearchAndPaginationInfo> }) => {
     const searchParams = await props.searchParams;
@@ -13,10 +9,9 @@ const CategoryPage = async (props: { searchParams?: Promise<ISearchAndPagination
         <div style={{ padding: 20 }}>
             <Typography variant="h4" gutterBottom>
                 Categories Page</Typography>
-            <Suspense fallback={<Loading />}>
-
-                <CategoriesTableNew searchParams={searchParams} />
-            </Suspense>
+            {/* <Suspense fallback={<Loading />}> */}
+            <CategoriesTableNew searchParams={searchParams} />
+            {/* </Suspense> */}
         </div>
     );
 };

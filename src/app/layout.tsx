@@ -5,6 +5,7 @@ import Header from "./_private/components/Header";
 import { AuthProvider } from "./_private/Context/AuthContext";
 import { DialogProvider } from "./_private/Context/DialogContext";
 import { SnackbarProvider } from "./_private/Context/SnackbarContext";
+import { ThemeRegistryContext } from "./_private/Context/ThemeRegistryContext";
 
 
 export const metadata: Metadata = {
@@ -29,16 +30,18 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ThemeRegistryContext >
+          <AuthProvider>
+            <Header />
 
-        <AuthProvider>
-          <Header />
+            <DialogProvider>
+              <SnackbarProvider>
+                {children}
+              </SnackbarProvider>
+            </DialogProvider>
+          </AuthProvider>
+        </ThemeRegistryContext>
 
-          <DialogProvider>
-            <SnackbarProvider>
-              {children}
-            </SnackbarProvider>
-          </DialogProvider>
-        </AuthProvider>
       </body>
     </html>
   );

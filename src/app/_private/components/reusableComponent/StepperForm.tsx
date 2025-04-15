@@ -13,8 +13,8 @@ interface StepperFormProps {
 }
 
 const StepperForm: React.FC<StepperFormProps> = ({ steps, onSubmit, saveOnStep, children, isStepValid, onReset }) => {
-    const [activeStep, setActiveStep] = useState(0);
 
+    const [activeStep, setActiveStep] = useState(0);
     const handleNext = async () => {
         if (saveOnStep) {
             try {
@@ -26,10 +26,7 @@ const StepperForm: React.FC<StepperFormProps> = ({ steps, onSubmit, saveOnStep, 
             setActiveStep(prev => Math.min(prev + 1, steps.length - 1));
         }
     };
-
-
     const handleBack = () => setActiveStep(prev => Math.max(prev - 1, 0));
-
     const handleSubmit = async () => {
         try {
             await onSubmit();
@@ -44,6 +41,7 @@ const StepperForm: React.FC<StepperFormProps> = ({ steps, onSubmit, saveOnStep, 
         setActiveStep(0);
         onReset();
     };
+
     return (
         <Grid container justifyContent="center" alignSelf={'center'} >
             <Grid size={8}>
@@ -55,7 +53,7 @@ const StepperForm: React.FC<StepperFormProps> = ({ steps, onSubmit, saveOnStep, 
                         </Step>
                     ))}
                 </Stepper>
-                <Card   >
+                <Card>
                     <CardHeader title={steps[activeStep]}></CardHeader>
 
                     <CardContent>

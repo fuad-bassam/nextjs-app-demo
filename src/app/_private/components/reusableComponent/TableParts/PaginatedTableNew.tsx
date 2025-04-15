@@ -11,12 +11,12 @@ import { TableColumnFormat } from "../../../models/Common/TableColumnFormat";
 import { TablePaginationBar } from "./TablePaginationBar";
 import TableSortHeader from "./TableSortHeader";
 
+
 interface PaginatedTableProps<T> {
   data: T[];
   columns: TableColumnFormat<T>[];
   totalCount: number;
   actions?: (row: T) => React.ReactNode;
-
 }
 
 const PaginatedTableNew = <T,>({
@@ -38,10 +38,13 @@ const PaginatedTableNew = <T,>({
                   <TableSortHeader columnId={column.id as string} label={column.label} />
                 </TableCell>
               ))}
+
+              {actions && <TableCell >Actions</TableCell>}
+
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row, rowIndex) => (
+            {data?.map((row, rowIndex) => (
               <TableRow hover role="checkbox" tabIndex={-1} key={rowIndex}>
                 {columns.map((column) => {
                   const value = row[column.id];
@@ -52,11 +55,9 @@ const PaginatedTableNew = <T,>({
                     </TableCell>
                   );
                 })}
-                {actions && (
-                  <TableCell>
-                    {actions(row)}
-                  </TableCell>
-                )}
+
+                {actions && <TableCell> {actions(row)} </TableCell>}
+
               </TableRow>
             ))}
           </TableBody>

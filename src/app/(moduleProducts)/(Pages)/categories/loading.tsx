@@ -30,6 +30,11 @@ const CategoriesLoadingSkeleton = () => {
                     gap: '16px',
                     margin: '16px',
                 }}>
+                    <Box sx={{
+                        width: '100%',
+                    }}>
+                        <Skeleton variant="rectangular" height={36} width={120} />
+                    </Box>
                     <Skeleton
                         variant="rectangular"
                         height={56}

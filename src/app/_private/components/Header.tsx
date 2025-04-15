@@ -18,9 +18,11 @@ const Header = () => {
 
     const handleDrawerToggle = () => setOpen(!open);
 
-    const routeMap: { [key: string]: { name: string, showInSidebar?: boolean } } = {
+    const routeMap: { [key: string]: { name: string, showInSidebar?: boolean, showToolbar?: boolean } } = {
         '/': { name: 'Home' },
         '/home': { name: 'Home', showInSidebar: false },
+        '/register': { name: 'Home', showInSidebar: false, showToolbar: false },
+        '/login': { name: 'login', showInSidebar: false, showToolbar: false },
         '/dashboard': { name: 'Dashboard' },
         '/products': { name: 'Products' },
         '/product-create-update': { name: params.urlId ? 'Product Edit' : 'Product Creation', showInSidebar: false },
@@ -30,11 +32,12 @@ const Header = () => {
         '/variants': { name: 'Variants' },
     };
 
-    const getPageName = () => {
-        const basePath = pathname.split('/')[1] || '/';
-        return routeMap[`/${basePath}`]?.name || 'Unknown Page';
+    const getCurrentPage = () => {
+        const basePath = pathname.split('/')[1] || '';
+        return routeMap[`/${basePath}`] ? routeMap[`/${basePath}`] : null;
     };
 
+    const CurrentPage = getCurrentPage();
     const handleLogout = async () => {
         await logout();
         router.push('/login');
@@ -42,7 +45,7 @@ const Header = () => {
 
     return (
         <AppBar position="static" sx={{ marginLeft: 0 }}>
-            <Toolbar sx={{ boxShadow: 3, borderRadius: 1 }}>
+            {CurrentPage?.showToolbar == false || <Toolbar sx={{ boxShadow: 3, borderRadius: 1 }}>
                 <IconButton
                     size="large"
                     edge="start"
@@ -55,7 +58,7 @@ const Header = () => {
                 </IconButton>
 
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    {getPageName()}
+                    {CurrentPage?.name || 'Unknown Page'}
                 </Typography>
 
                 {loginUser && (
@@ -78,7 +81,7 @@ const Header = () => {
                     handleDrawerToggle={handleDrawerToggle}
                     routeMap={routeMap}
                 />
-            </Toolbar>
+            </Toolbar>}
         </AppBar>
     );
 };
