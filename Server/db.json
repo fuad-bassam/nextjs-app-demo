@@ -8,6 +8,13 @@
       "role": "admin"
     },
     {
+      "id": "2",
+      "name": "John 3",
+      "email": "john2@example.com",
+      "password": "hashed_password",
+      "role": "admin"
+    },
+    {
       "name": "tt6",
       "email": "john3@example.com",
       "password": "register",
