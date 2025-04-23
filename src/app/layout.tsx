@@ -6,6 +6,10 @@ import { AuthProvider } from "./_private/Context/AuthContext";
 import { DialogProvider } from "./_private/Context/DialogContext";
 import { SnackbarProvider } from "./_private/Context/SnackbarContext";
 import { ThemeRegistryContext } from "./_private/Context/ThemeRegistryContext";
+// import "../scss/style.css";
+import "../scss/main.scss";
+
+import { KThemeProvider } from "./_private/Context/KThemeContext";
 
 
 export const metadata: Metadata = {
@@ -32,13 +36,16 @@ export default function RootLayout({
       <body>
         <ThemeRegistryContext >
           <AuthProvider>
-            <Header />
+            <KThemeProvider>
 
-            <DialogProvider>
-              <SnackbarProvider>
-                {children}
-              </SnackbarProvider>
-            </DialogProvider>
+              <Header />
+
+              <DialogProvider>
+                <SnackbarProvider>
+                  {children}
+                </SnackbarProvider>
+              </DialogProvider>
+            </KThemeProvider>
           </AuthProvider>
         </ThemeRegistryContext>
 

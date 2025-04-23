@@ -1,0 +1,112 @@
+.base-color, .dark-mode, .light-mode, :root {
+  --primary: #2980b9;
+  --secondary: #27ae60;
+  --background: #121212;
+  --text: #f5f5f5;
+  --text-inverse: #121212;
+  --border: #333333;
+  --card-bg: #1e1e1e;
+  --error: #c0392b;
+}
+
+.light-mode, :root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --btn-bg-primary-default: #205CDF;
+  --btn-bg-primary-disabled: #A6BEF2;
+  --btn-bg-primary-hover: #1846AA;
+  --btn-bg-primary-selected: #113278;
+  --btn-bg-secondary-default: #ECF5FF;
+  --btn-txt-secondary-default: #0047BA;
+
+  --btn-bg-secondary-disabled: #F2F8FF;
+  --btn-bg-secondary-hover: #2994FF;
+  --btn-bg-secondary-selected: #2994FF;
+  --neutral-white-bg: #205CDF; 
+  --typo-headings: #455664;
+}
+}
+
+.dark-mode {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --btn-bg-primary-default: #1186FA;
+  --btn-bg-primary-disabled: #073665;
+  --btn-bg-primary-hover: #045EB9;
+  --btn-bg-primary-selected: #034281;
+  --btn-bg-secondary-default: #363636;
+  --btn-bg-secondary-disabled: #242424;
+  --btn-bg-secondary-hover: #242424;
+  --btn-bg-secondary-selected: #121212;
+  --typo-headings: #FFF;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+.btn-lg {
+  width: 130px;
+  height: 48px;
+  min-width: 130px;
+}
+.btn-md {
+  width: 130px;
+  height: 40px;
+  min-width: 130px;
+}
+.btn-sm {
+  width: 100px;
+  height: 40px;
+  min-width: 100px;
+}
+.btn-primary {
+  background-color: var(--btn-bg-primary-default);
+  color: var(--text);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--btn-bg-primary-hover);
+  color: var(--text);
+}
+.btn-primary:disabled {
+  background-color: var(--btn-bg-primary-disabled);
+  color: var(--text);
+  cursor: not-allowed;
+}
+.btn-primary:active {
+  background-color: var(--error);
+  color: var(--text);
+}
+.btn-primary.selected, .btn-primary[aria-selected=true] {
+  background-color: var(--error);
+  color: var(--text);
+}
+.btn-secondary {
+  background-color: var(--btn-bg-secondary-default);
+  color: var(--text);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--btn-bg-secondary-hover);
+  color: var(--text);
+}
+.btn-secondary:disabled {
+  background-color: var(--btn-bg-secondary-disabled);
+  color: var(--text);
+  cursor: not-allowed;
+}
+.btn-secondary:active {
+  background-color: var(--error);
+  color: var(--text);
+}
+.btn-secondary.selected, .btn-secondary[aria-selected=true] {
+  background-color: var(--error);
+  color: var(--text);
+}

@@ -18,4 +18,5 @@ npm install @mui/icons-material
 npm i react-scan
 npm i axios
 npm i server-only client-only
+npm i sass
 ```

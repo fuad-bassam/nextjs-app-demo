@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useAuth } from '../Context/AuthContext';
 import Sidebar from './Sidebar';
 import useAuthService from '../helpers/AuthService';
+import { ThemeToggle } from './theme-toggle';
 
 const Header = () => {
     const { loginUser } = useAuth();
@@ -60,6 +61,7 @@ const Header = () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {CurrentPage?.name || 'Unknown Page'}
                 </Typography>
+                <ThemeToggle />
 
                 {loginUser && (
                     <Box display="flex" gap={2} alignItems="center">
@@ -73,6 +75,7 @@ const Header = () => {
                         >
                             Logout
                         </Button>
+
                     </Box>
                 )}
 

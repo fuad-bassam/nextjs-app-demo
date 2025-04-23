@@ -1,0 +1,49 @@
+.base-color {
+  --primary: #2980b9;
+  --secondary: #27ae60;
+  --background: #121212;
+  --text: #f5f5f5;
+  --text-inverse: #121212;
+  --border: #333333;
+  --card-bg: #1e1e1e;
+  --error: #c0392b;
+}
+
+.light-mode {
+  @extend .base-color;
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --btn-bg-primary-default: #205cdf;
+  --btn-bg-primary-disabled: #a6bef2;
+  --btn-bg-primary-hover: #1846aa;
+  --btn-bg-primary-selected: #113278;
+  --btn-bg-secondary-default: #ecf5ff;
+  --btn-txt-secondary-default: #0047ba;
+  --btn-bg-secondary-disabled: #f2f8ff;
+  --btn-bg-secondary-hover: #2994ff;
+  --btn-bg-secondary-selected: #2994ff;
+  --neutral-white-bg: #205cdf;
+  --typo-headings: #455664;
+}
+.dark-mode {
+  @extend .base-color;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  --btn-bg-primary-default: #1186fa;
+  --btn-bg-primary-disabled: #073665;
+  --btn-bg-primary-hover: #045eb9;
+  --btn-bg-primary-selected: #034281;
+  --btn-txt-secondary-default: #fff;
+  --btn-bg-secondary-default: #363636;
+  --btn-bg-secondary-disabled: #242424;
+  --btn-bg-secondary-hover: #050404;
+  --btn-bg-secondary-selected: #121212;
+
+  --typo-headings: #fff;
+}
+
+:root {
+  @extend .light-mode;
+}

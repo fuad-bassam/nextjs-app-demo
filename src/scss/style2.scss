@@ -1,0 +1,233 @@
+// _mixins.scss
+
+// Media Query Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "phone" {
+    @media (max-width: 599px) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet-portrait" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet-landscape" {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint == "desktop" {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $breakpoint == "big-desktop" {
+    @media (min-width: 1800px) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// Text Mixins
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin multiline-truncate($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Button Mixins
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+@mixin button-base {
+  @include button-reset;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+// Visual Effects
+@mixin box-shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+  } @else if $level == 2 {
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.16),
+      0 3px 6px rgba(0, 0, 0, 0.23);
+  } @else if $level == 3 {
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+  } @else if $level == 4 {
+    box-shadow:
+      0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+  } @else if $level == 5 {
+    box-shadow:
+      0 19px 38px rgba(0, 0, 0, 0.3),
+      0 15px 12px rgba(0, 0, 0, 0.22);
+  }
+}
+
+// Pseudo Elements
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+// Input Reset
+@mixin input-reset {
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+// Aspect Ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+// SVG Colors
+@mixin svg-color($color) {
+  path,
+  polygon,
+  rect,
+  circle {
+    fill: $color;
+  }
+}
+
+// Clearfix
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Animation
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+// Gradient
+@mixin gradient($start-color, $end-color, $orientation: "vertical") {
+  background: $start-color;
+  @if $orientation == "vertical" {
+    background: linear-gradient(to bottom, $start-color, $end-color);
+  } @else if $orientation == "horizontal" {
+    background: linear-gradient(to right, $start-color, $end-color);
+  } @else {
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+  }
+}
+
+// Placeholder
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+// Scrollbar
+@mixin scrollbar($size, $primary, $secondary: lighten($primary, 25%)) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: $size/2;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $secondary;
+    border-radius: $size/2;
+  }
+}
+
+// ------
+
+// _mixins.scss
+
+// Get color variable
+@function color($name) {
+  @return var(--color-#{$name});
+}
+
+// Mode transition mixin
+
+//////////////////////////////////////////////
+/// //////////////////////////////////////////////
+/// //////////////////////////////////////////////

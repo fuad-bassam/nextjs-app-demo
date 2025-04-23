@@ -1,0 +1,88 @@
+@use "../abstract/Layout.scss" as *;
+@mixin button-primary {
+  background-color: var(--btn-bg-primary-default);
+  color: var(--text);
+
+  transition: all 0.2s ease;
+  font-weight: 500;
+
+  &:hover:not(:disabled) {
+    background-color: var(--btn-bg-primary-hover);
+    color: var(--text);
+  }
+
+  &:disabled {
+    background-color: var(--btn-bg-primary-disabled);
+    color: var(--text);
+    cursor: not-allowed;
+  }
+  &:active {
+    background-color: var(--error);
+    color: var(--text);
+  }
+  &.selected,
+  &[aria-selected="true"] {
+    // background-color: var(--btn-bg-primary-selected);
+    background-color: var(--error);
+
+    color: var(--text);
+  }
+}
+@mixin button-secondary {
+  background-color: var(--btn-bg-secondary-default);
+  color: var(--btn-txt-secondary-default);
+
+  transition: all 0.2s ease;
+  font-weight: 500;
+
+  &:hover:not(:disabled) {
+    background-color: var(--btn-bg-secondary-hover);
+    color: var(--btn-txt-secondary-default);
+  }
+
+  &:disabled {
+    background-color: var(--btn-bg-secondary-disabled);
+    color: var(--text);
+    cursor: not-allowed;
+  }
+  &:active {
+    background-color: var(--error);
+    color: var(--text);
+  }
+  &.selected,
+  &[aria-selected="true"] {
+    // background-color: var(--btn-bg-secondary-selected);
+    background-color: var(--error);
+
+    color: var(--text);
+  }
+}
+.btn {
+  @include flex-center;
+  gap: 4px;
+  flex-shrink: 0;
+  border-radius: 8px;
+
+  &-lg {
+    width: 130px;
+    height: 48px;
+    min-width: 130px;
+  }
+  &-md {
+    width: 130px;
+    height: 40px;
+    min-width: 130px;
+  }
+  &-sm {
+    width: 100px;
+    height: 40px;
+    min-width: 100px;
+  }
+
+  &-primary {
+    @include button-primary;
+  }
+  &-secondary {
+    @include button-secondary;
+  }
+}

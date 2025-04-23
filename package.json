@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "convert_sass": "npx sass --no-source-map src/scss/main.scss src/scss/style.css",
+    "convert_sass_w": "npx sass --watch --no-source-map src/scss/main.scss src/scss/style.css"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -20,7 +22,8 @@
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scan": "^0.3.3"
+    "react-scan": "^0.3.3",
+    "sass": "^1.86.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
